@@ -5,7 +5,6 @@ from discord.ext.tasks import loop
 import datetime
 import random
 from discord.utils import get
-import json
 import os
 try:
     from discord_components import Button, ButtonStyle
@@ -14,17 +13,8 @@ except ImportError:
     Button = None
     ButtonStyle = None
 
-if os.path.exists(os.getcwd() + "/config.json"):
-    with open("./config.json") as f:
-        configData = json.load(f)
-else:
-    configData = {
-        "Prefix": "!"
-    }
-    with open(os.getcwd() + "/config.json", "w+") as f:
-        json.dump(configData, f)
 
-prefix = configData["Prefix"]
+prefix = "!"
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=prefix, intents=intents)
