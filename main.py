@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from always_on import keep_alive
 import asyncio
 from discord.ext.tasks import loop
 import datetime
@@ -1184,10 +1183,5 @@ async def on_button_click(interaction):
         channel2 = bot.get_channel(1421302158111801405)
         await channel2.send(embed=log)
 
-keep_alive()
-try:
-    bot.run(os.environ["token"])
-except discord.errors.HTTPException:
-    print("\n\n\nBLOCKED BY RATE LIMITS\nRESTARTING NOW\n\n\n")
-    os.system('kill 1')
-    os.system("python restarter.py")
+    import os
+    bot.run(os.getenv("TOKEN"))
